@@ -6,6 +6,10 @@
 
     <style type="text/CSS">
 
+        body {
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+
         .TM { 
                 border: 1px solid navy;            
                 display: inline-block;        
@@ -84,7 +88,7 @@
                 margin-right: 250px;
                 height: 25px;
                 width:25px;
-                background-color: #222;
+                background-color: white;
             }
             .chec:hover input ~ .new {
                 background-color: #ddd;
@@ -256,15 +260,6 @@
             geraTabela();
         }
 
-        /*// gera tabela - função original
-        function geraTabela() {
-            var len = colunaPedido.length;
-            saida4.innerHTML = "<tr style= 'background-color:deepskyblue'><td>Numero</td><td>Pedido</td><td>Valor</td><td>opt1</td><td>opt2</td><td>opt3</td></tr>";
-            for (var i = 0; i < len; i++) {
-                saida4.innerHTML += "<tr><td> No: " + i + "</td><td>" + colunaPedido[i] + "</td><td> R$ " + trataSaida(colunaValor[i]) + "</td><td>" + colunaopt1[i] + "</td><td>" + colunaopt2[i] + "</td><td>" + colunaopt3[i] + "</td></tr>";
-            }
-        }*/
-
         /*Função mais verbosa e mais confusa (traversei duas tabelas para impressão)*/
         function geraTabela() {
             var totalGeral = (colunaPedido.length + c) - 1;
@@ -272,7 +267,7 @@
             var revs = totalGeral / colunaPedido.length;
             //cabeçalho da tabela
             var head1 = "<tr style= 'background-color:deepskyblue'><td>Numero</td><td>Pedido</td>";
-            var head2 = "</td><td>Valor</td><td>opt1</td><td>opt2</td><td>opt3</td>";
+            var head2 = "</td><td>Valor</td><td>Bebida</td><td>Acompanhamento</td><td>Sobremesa</td>";
             var head3 = "<td></td><td></td><td>Contatos</td><td>Pedidos</td><td>Reversao</td><td>Media</td><td>valor Total</td></tr>";
             // Criação da primeira linha & Tratamento de valores nulos (Corner case)
             var line1_1 = "<tr><td> No: " + 1 + "</td><td>" + colunaPedido[0] + "</td><td> R$ " + trataSaida(colunaValor[0]) + "</td>";
@@ -284,6 +279,12 @@
                 line1_3 = "<td></td><td></td><td>" + totalGeral + "</td><td>" + colunaPedido.length + "</td><td> - </td><td> - </td><td> - </td></tr>";
                 saida4.innerHTML = head1.concat(head2, head3);//Aglutinador: serve apenas para não ficar com um linhão de texto...
                 saida4.innerHTML += line1_1.concat(line1_2, line1_3);
+                var s1 = document.getElementById("saida");
+                var s2 = document.getElementById("saida2");
+                var s3 = document.getElementById("saida3");
+                s1.innerHTML = " ";
+                s2.innerHTML = " ";
+                s3.innerHTML = " ";
             }
             else {
                 saida4.innerHTML = head1.concat(head2, head3); //Aglutinador padrão
