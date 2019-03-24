@@ -170,7 +170,7 @@
             return y;
         }
         function getExtra1() {
-            var x = document.getElementById("bebida");
+            var x = document.getElementById("opt1");
             if (x.checked == false) {
                 return 0;
             }
@@ -179,7 +179,7 @@
             }
         }
         function getExtra2() {
-            var x = document.getElementById("acompanhamento");
+            var x = document.getElementById("opt2");
             if (x.checked == false) {
                 return 0;
             }
@@ -188,7 +188,7 @@
             }
         }
         function getExtra3() {
-            var x = document.getElementById("sobremesa");
+            var x = document.getElementById("opt3");
             if (x.checked == false) {
                 return 0;
             }
@@ -200,9 +200,9 @@
         /*criação das listas*/
         var colunaPedido = [];
         var colunaValor = [];
-        var colunaBebida = [];
-        var colunaAcompanhamento = [];
-        var colunaSobremesa = [];
+        var colunaopt1 = [];
+        var colunaopt2 = [];
+        var colunaopt3 = [];
 
         /*tratamento do valor de entrada (dinheiro)*/
         function trataSaida(preco) {
@@ -215,18 +215,18 @@
         function apagador() {
             document.getElementById("numeroPedido").value = null;
             document.getElementById("valorPedido").value = null;
-            document.getElementById("bebida").checked = false;
-            document.getElementById("acompanhamento").checked = false;
-            document.getElementById("sobremesa").checked = false;
+            document.getElementById("opt1").checked = false;
+            document.getElementById("opt2").checked = false;
+            document.getElementById("opt3").checked = false;
         }
 
         /*Função principal*/
         function adicionarPedido() {
             colunaPedido.push(getPedido());
             colunaValor.push(getValor());
-            colunaBebida.push(getExtra1());
-            colunaAcompanhamento.push(getExtra2());
-            colunaSobremesa.push(getExtra3());
+            colunaopt1.push(getExtra1());
+            colunaopt2.push(getExtra2());
+            colunaopt3.push(getExtra3());
             score();
             achaNan();
             apagador();
@@ -237,9 +237,9 @@
         function removerPedido() {
             colunaPedido.pop(getPedido());
             colunaValor.pop(getValor());
-            colunaBebida.pop(getExtra1());
-            colunaAcompanhamento.pop(getExtra2());
-            colunaSobremesa.pop(getExtra3());
+            colunaopt1.pop(getExtra1());
+            colunaopt2.pop(getExtra2());
+            colunaopt3.pop(getExtra3());
             score();
             apagador();
         }
@@ -259,9 +259,9 @@
         /*// gera tabela - função original
         function geraTabela() {
             var len = colunaPedido.length;
-            saida4.innerHTML = "<tr style= 'background-color:deepskyblue'><td>Numero</td><td>Pedido</td><td>Valor</td><td>Bebida</td><td>Acompanhamento</td><td>Sobremesa</td></tr>";
+            saida4.innerHTML = "<tr style= 'background-color:deepskyblue'><td>Numero</td><td>Pedido</td><td>Valor</td><td>opt1</td><td>opt2</td><td>opt3</td></tr>";
             for (var i = 0; i < len; i++) {
-                saida4.innerHTML += "<tr><td> No: " + i + "</td><td>" + colunaPedido[i] + "</td><td> R$ " + trataSaida(colunaValor[i]) + "</td><td>" + colunaBebida[i] + "</td><td>" + colunaAcompanhamento[i] + "</td><td>" + colunaSobremesa[i] + "</td></tr>";
+                saida4.innerHTML += "<tr><td> No: " + i + "</td><td>" + colunaPedido[i] + "</td><td> R$ " + trataSaida(colunaValor[i]) + "</td><td>" + colunaopt1[i] + "</td><td>" + colunaopt2[i] + "</td><td>" + colunaopt3[i] + "</td></tr>";
             }
         }*/
 
@@ -272,11 +272,11 @@
             var revs = totalGeral / colunaPedido.length;
             //cabeçalho da tabela
             var head1 = "<tr style= 'background-color:deepskyblue'><td>Numero</td><td>Pedido</td>";
-            var head2 = "</td><td>Valor</td><td>Bebida</td><td>Acompanhamento</td><td>Sobremesa</td>";
+            var head2 = "</td><td>Valor</td><td>opt1</td><td>opt2</td><td>opt3</td>";
             var head3 = "<td></td><td></td><td>Contatos</td><td>Pedidos</td><td>Reversao</td><td>Media</td><td>valor Total</td></tr>";
             // Criação da primeira linha & Tratamento de valores nulos (Corner case)
             var line1_1 = "<tr><td> No: " + 1 + "</td><td>" + colunaPedido[0] + "</td><td> R$ " + trataSaida(colunaValor[0]) + "</td>";
-            var line1_2 = "<td>" + colunaBebida[0] + "</td><td>" + colunaAcompanhamento[0] + "</td><td>" + colunaSobremesa[0] + "</td>";
+            var line1_2 = "<td>" + colunaopt1[0] + "</td><td>" + colunaopt2[0] + "</td><td>" + colunaopt3[0] + "</td>";
             var line1_3 = "<td></td><td></td><td>" + totalGeral + "</td><td>" + colunaPedido.length + "</td><td>" + (revs).toFixed(2) + "</td><td>R$ " + trataSaida(media()) + "</td><td>R$ " + trataSaida(total()) + "</td></tr>";
             if (isNaN(media())) {
                 line1_1 = "<tr><td> - </td><td> - </td><td> - </td>";
@@ -291,7 +291,7 @@
                 //criação das linhas de 2 até N
                 for (var i = 1; i < len; i++) {
                     line1_1 = "<tr><td> No: " + (i + 1) + "</td><td>" + colunaPedido[i] + "</td><td> R$ " + trataSaida(colunaValor[i]) + "</td>";
-                    line1_2 = "<td>" + colunaBebida[i] + "</td><td>" + colunaAcompanhamento[i] + "</td><td>" + colunaSobremesa[i] + "</td>";
+                    line1_2 = "<td>" + colunaopt1[i] + "</td><td>" + colunaopt2[i] + "</td><td>" + colunaopt3[i] + "</td>";
                     saida4.innerHTML += line1_1.concat(line1_2);
 
                 }
@@ -361,9 +361,9 @@
                 <p>Em caso de erro, clique no botão remover último pedido.</p>
                 <p><label>Número do pedido:</label> <input id="numeroPedido" type="text" size="10" /></p>
                 <p>Valor do pedido: <input id="valorPedido" type="text" size="10" /></p>
-                <label class="chec">Bebida: <input id="bebida" type="checkbox" /><span class="new"></span></label><br>
-                <label class="chec">Acompanhamento: <input id="acompanhamento" type="checkbox" /><span class="new"></span></label><br>
-                <label class="chec">Sobremesa: <input id="sobremesa" type="checkbox" /><span class="new"></span></label><br>
+                <label class="chec">Bebida: <input id="opt1" type="checkbox" /><span class="new"></span></label><br>
+                <label class="chec">Acompanhamento: <input id="opt2" type="checkbox" /><span class="new"></span></label><br>
+                <label class="chec">Sobremesa: <input id="opt3" type="checkbox" /><span class="new"></span></label><br>
                 <input id="btInsere" type="button" value="Inserir" onclick="adicionarPedido()" />
                 <input id="btRemove" type="button" value="remover ultimo pedido" onclick="removerPedido()" /><br>
                 <input id="btSemV" type="button" value="Sem venda" onclick="semConv()" />
