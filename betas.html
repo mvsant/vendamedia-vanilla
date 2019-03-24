@@ -6,21 +6,32 @@
 
     <style type="text/CSS">
 
-        .TM { border: 1px solid navy;            
-            float:left;        
-            background-color:palegreen;
-            border-radius: 15px;
-            margin:1px; 
-            padding: 9px;} 
-        .Ultima { border: 1px solid navy;   
-            float:left; border-radius: 15px;
-            clear:both;
-            margin:1px;
-            padding: 9px;  
-            background-color:mediumturquoise}
-            form{float:left;background-color: silver;}
-            #saida3{clear:both}
-            #saida4 td{
+        .TM { 
+                border: 1px solid navy;            
+                display: inline-block;        
+                background-color:palegreen;
+                border-radius: 15px;
+                margin:1px; 
+                clear:both;
+                padding: 9px;
+                margin-left:8px;
+                margin-right: 8px
+            } 
+        .Ultima { 
+                border: 1px solid navy;   
+                display: inline-block; 
+                border-radius: 15px;
+                clear:both;
+                margin:1px;
+                padding: 9px;  
+                background-color:mediumturquoise
+            }
+        form{
+                float:left;
+                background-color: silver;
+                }
+        
+        #saida4 td{
                 text-align: center;
                 border: 1px solid black;
                 margin: -6px;
@@ -42,13 +53,75 @@
             .ntg td:nth-child(n+7){
                 display: none
             }
+
+            /*checkbox - Alinhamento horse-way*/
+            #numeroPedido {
+                margin-left: 35px
+                
+            }
+            #valorPedido {
+                margin-left: 56px
+            }/*
+            
+            /*checkbox - Novo estilo*/
+            .chec {
+                display: block;
+                position: relative;
+                user-select: none;
+            }
+            .chec input{
+                position: absolute;
+                opacity: 0;
+                height: 0;
+                width: 0;               
+            }
+            .new{                
+                top: 0;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                float:right;
+                margin-right: 250px;
+                height: 25px;
+                width:25px;
+                background-color: #222;
+            }
+            .chec:hover input ~ .new {
+                background-color: #ddd;
+            }
+            .chec input:checked ~ .new {
+                background-color: #2196F3;
+            }
+            .new:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+            .chec input:checked ~ .new:after {
+                display: block;
+            }
+            .chec .new:after {
+                left: 9px;
+                top: 5px;
+                width: 5px;
+                height: 10px;
+                float:right;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+                margin-left: 195px;
+            }
+
+            /*bts*/
             #btInsere {
                 background-color: #4CAF50;
                 border: none;
                 color: white;
                 padding: 16px 32px;
                 text-decoration: none;
-                margin: 4px 2px;
+                margin: 4px 15px;
                 cursor: pointer;
             }
             #btRemove {
@@ -57,7 +130,7 @@
                 color: white;
                 padding: 16px 32px;
                 text-decoration: none;
-                margin: 4px 2px;
+                margin: 4px 15px;
                 cursor: pointer;
             }
             #btSemV {
@@ -66,7 +139,7 @@
                 color: white;
                 padding: 16px 32px;
                 text-decoration: none;
-                margin: 4px 2px;
+                margin: 4px 15px;
                 cursor: pointer;
             }
             #Exportar {
@@ -75,8 +148,11 @@
                 color: white;
                 padding: 16px 32px;
                 text-decoration: none;
-                margin: 4px 2px;
+                margin: 4px 15px;
                 cursor: pointer;
+            }
+            footer{
+                clear:both;
             }
     </style>
 
@@ -190,10 +266,10 @@
         }*/
 
         /*Função mais verbosa e mais confusa (traversei duas tabelas para impressão)*/
-        function geraTabela(){
-            var totalGeral = (colunaPedido.length+c)-1;
+        function geraTabela() {
+            var totalGeral = (colunaPedido.length + c) - 1;
             var len = colunaPedido.length;
-            var revs = totalGeral/colunaPedido.length;
+            var revs = totalGeral / colunaPedido.length;
             //cabeçalho da tabela
             var head1 = "<tr style= 'background-color:deepskyblue'><td>Numero</td><td>Pedido</td>";
             var head2 = "</td><td>Valor</td><td>Bebida</td><td>Acompanhamento</td><td>Sobremesa</td>";
@@ -201,23 +277,23 @@
             // Criação da primeira linha & Tratamento de valores nulos (Corner case)
             var line1_1 = "<tr><td> No: " + 1 + "</td><td>" + colunaPedido[0] + "</td><td> R$ " + trataSaida(colunaValor[0]) + "</td>";
             var line1_2 = "<td>" + colunaBebida[0] + "</td><td>" + colunaAcompanhamento[0] + "</td><td>" + colunaSobremesa[0] + "</td>";
-            var line1_3 = "<td></td><td></td><td>"+totalGeral+"</td><td>"+colunaPedido.length+"</td><td>"+(revs).toFixed(2)+"</td><td>R$ "+trataSaida(media())+"</td><td>R$ "+trataSaida(total())+"</td></tr>";        
-            if(isNaN(media())){
+            var line1_3 = "<td></td><td></td><td>" + totalGeral + "</td><td>" + colunaPedido.length + "</td><td>" + (revs).toFixed(2) + "</td><td>R$ " + trataSaida(media()) + "</td><td>R$ " + trataSaida(total()) + "</td></tr>";
+            if (isNaN(media())) {
                 line1_1 = "<tr><td> - </td><td> - </td><td> - </td>";
                 line1_2 = "<td> - </td><td> - </td><td> - </td>";
-                line1_3 = "<td></td><td></td><td>"+totalGeral+"</td><td>"+colunaPedido.length+"</td><td> - </td><td> - </td><td> - </td></tr>";
-                saida4.innerHTML = head1.concat(head2,head3);//Aglutinador: serve apenas para não ficar com um linhão de texto...
-                saida4.innerHTML += line1_1.concat(line1_2,line1_3);
-                }
-            else{
-                saida4.innerHTML = head1.concat(head2,head3); //Aglutinador padrão
-                saida4.innerHTML += line1_1.concat(line1_2,line1_3);            
-            //criação das linhas de 2 até N
-            for (var i = 1; i < len; i++) {                
-                line1_1 = "<tr><td> No: " + (i+1) + "</td><td>" + colunaPedido[i] + "</td><td> R$ " + trataSaida(colunaValor[i]) + "</td>";
-                line1_2 = "<td>" + colunaBebida[i] + "</td><td>" + colunaAcompanhamento[i] + "</td><td>" + colunaSobremesa[i] + "</td>";
-                saida4.innerHTML += line1_1.concat(line1_2);
-                
+                line1_3 = "<td></td><td></td><td>" + totalGeral + "</td><td>" + colunaPedido.length + "</td><td> - </td><td> - </td><td> - </td></tr>";
+                saida4.innerHTML = head1.concat(head2, head3);//Aglutinador: serve apenas para não ficar com um linhão de texto...
+                saida4.innerHTML += line1_1.concat(line1_2, line1_3);
+            }
+            else {
+                saida4.innerHTML = head1.concat(head2, head3); //Aglutinador padrão
+                saida4.innerHTML += line1_1.concat(line1_2, line1_3);
+                //criação das linhas de 2 até N
+                for (var i = 1; i < len; i++) {
+                    line1_1 = "<tr><td> No: " + (i + 1) + "</td><td>" + colunaPedido[i] + "</td><td> R$ " + trataSaida(colunaValor[i]) + "</td>";
+                    line1_2 = "<td>" + colunaBebida[i] + "</td><td>" + colunaAcompanhamento[i] + "</td><td>" + colunaSobremesa[i] + "</td>";
+                    saida4.innerHTML += line1_1.concat(line1_2);
+
                 }
             }
         }
@@ -283,24 +359,21 @@
                 <p>Insira o valor do pedido (ex: 10050 ou 100,50).</p>
                 <p>Clique no botão inserir para armazenar o valor do pedido.</p>
                 <p>Em caso de erro, clique no botão remover último pedido.</p>
-                <p>Número do pedido: <input id="numeroPedido" type="text" size="10" /></p>
+                <p><label>Número do pedido:</label> <input id="numeroPedido" type="text" size="10" /></p>
                 <p>Valor do pedido: <input id="valorPedido" type="text" size="10" /></p>
-                <p>Bebida: <input id="bebida" type="checkbox" /></p>
-                <p>Acompanhamento: <input id="acompanhamento" type="checkbox" /></p>
-                <p>Sobremesa: <input id="sobremesa" type="checkbox" /></p>
-                <input id="btInsere"type="button" value="Inserir" onclick="adicionarPedido()" /> <br><br>
-                <input id="btRemove" type="button" value="remover ultimo pedido" onclick="removerPedido()" />
+                <label class="chec">Bebida: <input id="bebida" type="checkbox" /><span class="new"></span></label><br>
+                <label class="chec">Acompanhamento: <input id="acompanhamento" type="checkbox" /><span class="new"></span></label><br>
+                <label class="chec">Sobremesa: <input id="sobremesa" type="checkbox" /><span class="new"></span></label><br>
+                <input id="btInsere" type="button" value="Inserir" onclick="adicionarPedido()" />
+                <input id="btRemove" type="button" value="remover ultimo pedido" onclick="removerPedido()" /><br>
                 <input id="btSemV" type="button" value="Sem venda" onclick="semConv()" />
-                <br><br>
-                <input id="Exportar" type="button" value="Exportar" onclick="exporter()" /> <br><br>
-                <div class="TM">Media (Aproximado)
+                <input id="Exportar" type="button" value="Exportar" onclick="exporter()" /><br>
+                <div class="TM">Media (Aprox.)
                     <div id="saida"></div>
                 </div>
-                <br><br>
                 <div class="Ultima">Ultimo Pedido:
                     <div id="saida2"></div>
                 </div>
-                <br><br>
                 <div class="TM">Total:
                     <div id="saida3"></div>
                 </div>
@@ -310,12 +383,12 @@
         </form>
         <br>
         <div id="teste">
-        <table id="saida4" class="ntg">
+            <table id="saida4" class="ntg">
 
-        </table>
-        
-        <div>&copy; 2019. Marlon Veiga :) </div>
-    </div>
+            </table>
+
+            <footer>&copy; 2019. Marlon Veiga :) </footer>
+        </div>
 </body>
 
 </html>
