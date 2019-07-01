@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Calculadora de Pedidos</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+    <body>
+        <div id="formulario">
+        <header> Vers&atilde;o 5.0</header>
+            <form>
+                <fieldset>
+                    <legend>Ferramenta TM</legend>
+                    <p>Insira o valor do pedido (ex: 10050 ou 100,50).</p>
+                    <p>Clique no botão inserir para armazenar o valor do pedido.</p>
+                    <p>Em caso de erro, clique no botão remover último pedido.</p>
+                    <p><label>Número do pedido:</label> <input id="numeroPedido" type="text" size="10" /></p>
+                    <p>Valor do pedido: <input id="valorPedido" type="text" size="10" /></p>
+                    <label class="chec">Bebida: <input id="opt1" type="checkbox" /><span class="new"></span></label><br>
+                    <label class="chec">Acompanhamento: <input id="opt2" type="checkbox" /><span class="new"></span></label><br>
+                    <label class="chec">Sobremesa: <input id="opt3" type="checkbox" /><span class="new"></span></label><br>
+                    <input id="btInsere" type="button" value="Inserir" onclick="adicionarPedido()" />
+                    <input id="Exportar" type="button" value="Exportar" onclick="exporter()" /><br>
+                    <input id="btSemV" type="button" value="Sem venda" onclick="AdicionarSemVenda()" />
+                    
+                    <input id="btRemove" type="button" value="remover ultimo pedido" onclick="removerPedido()" /><br>
+                </fieldset>
+            </form>
+            <br>
+            </div>
+            <div id="tabelas">
+                    <table class="ntg">
+                            <thead><tr><td>M&eacute;dia</td><td>Total</td><td>Convers&atilde;o</td> <td>Opç&atilde;o1</td><td>Opç&atilde;o 2</td><td>Opç&atilde;o 3</td></tr></thead>
+                            <tr id="saidaTotais"></tr>
+                </table>
+                <br>
+                <table id="saidaItens" class="ntg">
+                    <thead><tr><td>Pedido</td><td>Valor</td><td>Opção 1</td><td>Opção 2</td><td>Opção 3</td></tr></thead>
+                </table>
+                <footer>&copy; 2019. Marlon Veiga :) </footer>
+            </div>
+
+            <script src="script.js" async defer></script>
+        </body>
+</html>

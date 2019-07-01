@@ -1,0 +1,143 @@
+        body {
+            margin: 0;
+            padding: 0;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            height: 100vh;
+            width: 100%;
+            display: table;
+        }
+        #formulario {
+            width: 40%;
+            min-height: 90%;
+            margin-top: 4%;
+            margin-left:3%;
+        }
+        form{                
+                background-color: silver;
+                float: left;
+                }
+        
+        table td{
+                text-align: center;
+                border: 1px solid black;
+                margin: -6px;
+                padding: 10px;
+                background-color: wheat;
+
+            }
+            thead td{
+                background-color: deepskyblue;
+            }
+
+            /*checkbox - Alinhamento horse-way*/
+            #numeroPedido {
+                margin-left: 6%
+                
+            }
+            #valorPedido {
+                margin-left: 11%
+            }/*
+            
+            /*checkbox - Novo estilo*/
+            .chec {
+                display: block;
+                position: relative;
+                user-select: none;
+            }
+            .chec input{
+                position: absolute;
+                opacity: 0;
+                height: 0;
+                width: 0;               
+            }
+            .new{                
+                top: 0;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                float:right;
+                margin-right: 250px;
+                height: 25px;
+                width:25px;
+                background-color: white;
+            }
+            .chec:hover input ~ .new {
+                background-color: #ddd;
+            }
+            .chec input:checked ~ .new {
+                background-color: #2196F3;
+            }
+            .new:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+            .chec input:checked ~ .new:after {
+                display: block;
+            }
+            .chec .new:after {
+                left: 9px;
+                top: 5px;
+                width: 5px;
+                height: 10px;
+                float:right;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+                margin-left: 195px;
+            }
+
+            /*bts*/
+            #btInsere {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-decoration: none;
+                margin: 4px 15px;
+                cursor: pointer;
+            }
+            #btRemove {
+                background-color: rgb(185, 173, 0);
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-decoration: none;
+                margin-left: 3%;
+                cursor: pointer;
+            }
+            #btSemV {
+                background-color: rgb(185, 37, 0);
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-decoration: none;
+                margin: 4px 15px;
+                cursor: pointer;
+            }
+            #Exportar {
+                background-color: rgb(0, 43, 185);
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-decoration: none;
+                margin-left: 10%;
+                cursor: pointer;
+            }
+            footer{
+                position: fixed;
+                bottom:0;
+                
+            }
+            #tabelas{
+                min-height: 90%;
+                width: 50%;
+                float: right;
+                margin-top: -2%
+            }
+            header {
+                text-align: center;
+            }
+            
