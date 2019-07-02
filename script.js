@@ -169,6 +169,6 @@ var prefix = function(){
 function exporter() {
     var tabelahtm = document.getElementById("tabelas");
     var cria = tabelahtm.outerHTML;
-    window.open('data:data:application/vnd.ms-excel,' + encodeURIComponent(cria));
+    window.open('data:application/vnd.ms-excel;charset=utf-8,' + encodeURI(cria).replace(/Op%C3%A7%C3%A3o/g,"Op%E7%E3o").replace(/Convers%C3%A3o/g,"Convers%E3o").replace(/M%C3%A9dia/g,"M%E9dia"));
     window.close();
 }
