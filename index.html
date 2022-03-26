@@ -1,55 +1,101 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Calculadora de Pedidos</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-            <![endif]-->
-    <body>
-        <div id="formulario">
-        <header> Vers&atilde;o 5.0</header>
-            <form>
-                <fieldset>
-                    <legend>Ferramenta TM</legend>
-                    <p>Insira o valor do pedido (ex: 10050 ou 100,50).</p>
-                    <p>Clique no botão inserir para armazenar o valor do pedido.</p>
-                    <p>Em caso de erro, clique no botão remover último pedido.</p>
-                    <p><label>Número do pedido:</label> <input id="numeroPedido" type="text" size="10" /></p>
-                    <p>Valor do pedido: <input id="valorPedido" type="text" size="10" /></p>
-                    <label class="chec">Bebida: <input id="opt1" type="checkbox" /><span class="new"></span></label><br>
-                    <label class="chec">Acompanhamento: <input id="opt2" type="checkbox" /><span class="new"></span></label><br>
-                    <label class="chec">Sobremesa: <input id="opt3" type="checkbox" /><span class="new"></span></label><br>
-                    <input id="btInsere" type="button" value="Inserir" onclick="adicionarPedido()" />
-                    <input id="Exportar" type="button" value="Exportar" onclick="exporter()" /><br>
-                    <input id="btSemV" type="button" value="Sem venda" onclick="AdicionarSemVenda()" />
-                    
-                    <input id="btRemove" type="button" value="remover ultimo pedido" onclick="removerPedido()" /><br>
-                </fieldset>
-            </form>
-            <br>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Calculadora de Pedidos</title>
+  </head>
+  <body>
+    <main>
+      <section id="control">
+        <form action="" id="control-form">
+          <fieldset>
+            <legend>Insira o seu pedido</legend>
+            <p>Insira o valor do pedido (ex: 10050 ou 100,50).</p>
+            <p>Clique no botão inserir para armazenar o valor do pedido.</p>
+            <p>Em caso de erro, clique no botão remover último pedido.</p>
+            <div id="control-fields">
+              <label for="orderId">
+                <span>Número do pedido:</span>
+                <input id="orderId" type="text" size="10" />
+              </label>
+              <label for="orderPrice">
+                <span>Valor do pedido:</span>
+                <input id="orderPrice" type="text" size="10" />
+              </label>
+              <label for="option1" class="check">
+                <span>Bebida:</span>
+                <input id="option1" type="checkbox" />
+              </label>
+              <label for="option2" class="check">
+                <span>acompanhamento:</span>
+                <input id="option2" type="checkbox" />
+              </label>
+              <label for="option3" class="check">
+                <span>Sobremesa:</span>
+                <input id="option3" type="checkbox" />
+              </label>
             </div>
-            <div id="tabelas">
-                    <table class="ntg">
-                            <thead><tr><td>Média</td><td>Total</td><td>Conversão</td> <td>Opção 1</td><td>Opção 2</td><td>Opção 3</td></tr></thead>
-                            <tr id="saidaTotais"></tr>
-                </table>
-                <br>
-                <table id="saidaItens" class="ntg">
-                    <thead><tr><td>Pedido</td><td>Valor</td><td>Opção 1</td><td>Opção 2</td><td>Opção 3</td></tr></thead>
-                </table>
-                <footer>&copy; 2019. Marlon Veiga :) </footer>
+            <div id="control-buttons" class="button-styles">
+              <button id="insertButton">Inserir</button>
+              <button id="noSell">Sem Venda</button>
+              <button id="removeLast">Apagar último</button>
+              <button id="exportButton">Exportar</button>
             </div>
-
-            <script src="script.js" async defer></script>
-        </body>
+          </fieldset>
+        </form>
+      </section>
+      <section id="tablesSection">
+        <div id="tablesArea">
+          <table id="resultTable">
+            <thead>
+              <tr>
+                <td>Média</td>
+                <td>Total</td>
+                <td>Conversão</td>
+                <td>Opção 1</td>
+                <td>Opção 2</td>
+                <td>Opção 3</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>R$ 0,00</td>
+                <td>R$ 0,00</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>0%</td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          <table id="dailyTable">
+            <thead>
+              <tr>
+                <td>Pedido</td>
+                <td>Valor</td>
+                <td>Opção 1</td>
+                <td>Opção 2</td>
+                <td>Opção 3</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer>&copy; 2022. Marlon Veiga :)</footer>
+    <script src="script.js" async defer></script>
+  </body>
 </html>
